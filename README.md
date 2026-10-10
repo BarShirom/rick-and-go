@@ -1,75 +1,107 @@
-# React + TypeScript + Vite
+# Rick & GO
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Hebrew, right-to-left business website for moving and handyman services, built with React, TypeScript, and Vite. The page helps visitors explore services and contact the business through WhatsApp or phone.
 
-Currently, two official plugins are available:
+[Production website](https://rick-and-go.vercel.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+The production link may show an earlier revision until these changes are explicitly approved for deployment.
 
-## React Compiler
+## Preview
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Screenshots captured from the local production build in headless Chrome. Narrow screenshots are browser viewport captures, not physical-device tests.
 
-## Expanding the ESLint configuration
+[Desktop screenshot](docs/screenshots/desktop.png) | [Full mobile screenshot](docs/screenshots/mobile.png)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+<img src="docs/screenshots/desktop.png" alt="Desktop page showing the hero, services, advantages, contact section, and footer" width="700" />
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+<img src="docs/screenshots/mobile-menu.png" alt="Expanded navigation menu at a narrow viewport" width="300" />
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Features
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Responsive layouts with the original green identity and mascot illustration.
+- Mobile navigation disclosure with accessible naming, expanded state, Escape handling, and closure on link selection, outside pointer interaction, focus leaving the header, or breakpoint changes.
+- Services and business advantages rendered from data.
+- Direct phone, WhatsApp, Facebook, and Google Business links.
+- Hebrew language and RTL layout, with isolated LTR phone numbers and English attribution.
+- Skip link, visible focus styles, semantic landmarks, decorative-icon handling, and reduced-motion styles.
+- Responsive WebP hero sources with a JPEG fallback, reserved dimensions, and high fetch priority.
+- Canonical URL, Open Graph and social metadata, branded icons, robots.txt, and a sitemap.
+- Dynamic copyright year and developer attribution.
 
+There is no contact form, backend, database, authentication, or analytics integration.
+
+## Technology
+
+React 19, TypeScript 6, Vite 8, plain CSS, React Icons, and ESLint. Vercel hosts the existing production website.
+
+The implementation keeps state local to the mobile menu. Shared CSS handles button variants and design tokens; the page does not require a routing or state-management library.
+
+## Getting started
+
+Use Node.js 22.12 or newer and npm. Run these commands from the directory containing package.json (the client directory in the enclosing workspace):
+
+```sh
+npm ci
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Use the URL printed by Vite. On Windows PowerShell, use npm.cmd if local execution policy blocks npm.ps1.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Commands
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+| Command | Purpose |
+| --- | --- |
+| npm run dev | Start the development server |
+| npm run typecheck | Check application and Vite configuration types |
+| npm run lint | Run ESLint |
+| npm run check:content | Reject literal and encoded em dashes in frontend text files |
+| npm run build | Check types and produce dist |
+| npm run preview | Serve the production build locally |
 
+No command deploys or pushes the project.
+
+## Project structure
+
+```text
+src/
+  assets/       Original artwork and optimized display assets
+  components/   Navbar, Hero, Services, WhyUs, Contact, Footer
+  data/         Services, advantages, and existing contact destinations
+  styles/       Reset, shared tokens, buttons, focus, and motion styles
+  types/        Typed service data
+public/         Icons, social preview, robots.txt, sitemap.xml
+scripts/        Dependency-free content verification
+docs/           Screenshots and verification notes
 ```
+
+## Technical decisions
+
+**Spacing:** The hero customizes section padding through custom properties, avoiding competing physical/logical padding rules and !important overrides. The fixed header and anchor offsets share a height token.
+
+**Color:** Bright green remains part of the identity. The darker primary button surface provides approximately 5.72:1 contrast with white text; green text on the base background provides approximately 5.40:1. These checks are not a complete accessibility certification.
+
+**Images:** The 640px WebP hero is about 70 KB, compared with the original 238 KB JPEG. The browser selects an appropriate source for viewport width and pixel density. The navbar derivative is about 6.8 KB, compared with its 86 KB original. Original JPEG files are retained as source artwork. The hero is not lazy-loaded.
+
+**Contact data:** Shared constants reduce duplication. Contact and Footer retain their original, distinct Google Business short links.
+
+**Content:** Keep the existing business claims, service list, section IDs, and contact destinations. Do not add unverified ratings, reviews, locations, or achievements. User-facing text must not contain Unicode U+2014; run the content check after copy changes.
+
+## Verification
+
+TypeScript, ESLint, the content check, and production build pass. The local production build was inspected in headless Chrome at desktop and narrow viewport sizes.
+
+See [verification notes](docs/verification.md) for exact coverage and remaining manual checks. No Lighthouse score, Core Web Vitals result, full WCAG conformance, or cross-browser certification is claimed.
+
+## Deployment
+
+Vercel should use this directory as the project root, npm run build as the build command, and dist as the output directory. Deployment requires separate approval.
+
+If the production domain changes, update the canonical URL, social URLs, robots.txt, and sitemap.xml together. Verify the social preview after deployment because the local asset is not available at the production URL until published.
+
+## Portfolio description
+
+Rick & GO is a responsive Hebrew RTL service-business website built with React and TypeScript. It combines reusable presentation styles, data-driven service sections, accessible navigation patterns, responsive image delivery, and SEO metadata while preserving direct business contact flows.
+
+## Developer
+
+Designed & Developed by Bar Shirom.

@@ -11,15 +11,16 @@ import "./styles/globals.css";
 function App() {
   return (
     <>
+      <a className="skip-link" href="#main-content">דלגו לתוכן הראשי</a>
       <Navbar />
 
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <Hero />
         <Services />
         <WhyUs />
         <Contact />
-        <Footer />
       </main>
+      <Footer />
     </>
   );
 }

@@ -1,5 +1,9 @@
+import { contact } from "../../data/contact";
 import { FaCheck, FaPhone, FaWhatsapp } from "react-icons/fa6";
-import heroImage from "../../assets/images/ChatGPT Image Aug 6, 2026, 12_29_08 PM.png";
+import heroImage from "../../assets/images/image.jpeg";
+import heroSmall from "../../assets/images/hero-640.webp";
+import heroMedium from "../../assets/images/hero-960.webp";
+import heroLarge from "../../assets/images/hero-1254.webp";
 import "./Hero.css";
 
 const Hero = () => {
@@ -7,7 +11,7 @@ const Hero = () => {
     <section className="hero section" id="home">
       <div className="container hero-container">
         <div className="hero-content">
-          <span className="hero-eyebrow">Rick and GO</span>
+          <span className="hero-eyebrow" dir="ltr">Rick and GO</span>
 
           <h1>
             הובלות קטנות ובינוניות
@@ -21,48 +25,58 @@ const Hero = () => {
 
           <div className="hero-actions">
             <a
-              href="https://wa.me/972537201979"
+              href={contact.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="hero-button hero-button-primary"
+              className="button button-primary"
             >
-              <FaWhatsapp />
+              <FaWhatsapp aria-hidden="true" />
               קבלו הצעת מחיר
             </a>
 
             <a
-              href="tel:0537201979"
-              className="hero-button hero-button-secondary"
+              href={contact.phone}
+              className="button button-secondary"
             >
-              <FaPhone />
+              <FaPhone aria-hidden="true" />
               התקשרו עכשיו
             </a>
           </div>
 
           <ul className="hero-benefits">
             <li>
-              <FaCheck />
+              <FaCheck aria-hidden="true" />
               שירות מהיום להיום
             </li>
 
             <li>
-              <FaCheck />
+              <FaCheck aria-hidden="true" />
               10% הנחה לסטודנטים
             </li>
 
             <li>
-              <FaCheck />
+              <FaCheck aria-hidden="true" />
               שירות אמין וזהיר
             </li>
           </ul>
         </div>
 
         <div className="hero-image-wrapper">
-          <img
-            src={heroImage}
-            alt="שירותי הובלות של Rick and GO"
-            className="hero-image"
-          />
+          <picture>
+            <source
+              type="image/webp"
+              srcSet={`${heroSmall} 640w, ${heroMedium} 960w, ${heroLarge} 1254w`}
+              sizes="(max-width: 600px) calc(100vw - 32px), (max-width: 950px) 580px, (max-width: 1240px) 50vw, 600px"
+            />
+            <img
+              src={heroImage}
+              alt="איור הקמע של Rick and GO לצד רכב הובלות"
+              className="hero-image"
+              width="1254"
+              height="1254"
+              fetchPriority="high"
+            />
+          </picture>
         </div>
       </div>
     </section>

@@ -1,3 +1,4 @@
+import { contact } from "../../data/contact";
 import { FaFacebookF, FaGoogle, FaPhone, FaWhatsapp } from "react-icons/fa6";
 
 import "./Footer.css";
@@ -7,7 +8,7 @@ const Footer = () => {
     <footer className="footer">
       <div className="container footer-container">
         <div className="footer-brand">
-          <h3>Rick & GO</h3>
+          <h2 className="footer-brand-name" dir="ltr">Rick & GO</h2>
 
           <p>
             הובלות קטנות ובינוניות, שירותי הנדימן, אחסון רהיטים ופירוק והרכבה.
@@ -15,43 +16,42 @@ const Footer = () => {
         </div>
 
         <div className="footer-socials">
-          <a href="tel:0537201979" aria-label="טלפון">
-            <FaPhone />
+          <a href={contact.phone} aria-label="טלפון">
+            <FaPhone aria-hidden="true" />
           </a>
 
           <a
-            href="https://wa.me/972537201979"
+            href={contact.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="WhatsApp"
           >
-            <FaWhatsapp />
+            <FaWhatsapp aria-hidden="true" />
           </a>
 
           <a
-            href="https://www.facebook.com/profile.php?id=61591568684363"
+            href={contact.facebook}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Facebook"
           >
-            <FaFacebookF />
+            <FaFacebookF aria-hidden="true" />
           </a>
 
           <a
-            href="https://share.google/aWiRlvcT3Jm6OKIkc"
+            href={contact.googleFooter}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Google"
           >
-            <FaGoogle />
+            <FaGoogle aria-hidden="true" />
           </a>
         </div>
       </div>
 
-      <div className="footer-bottom">
-        © {new Date().getFullYear()} Rick & GO. כל הזכויות שמורות.
-        <br />
-        Created by <strong>Bar Shirom</strong>
+      <div className="footer-bottom" dir="ltr" lang="en">
+        <p>© {new Date().getFullYear()} Bar Shirom. All rights reserved.</p>
+        <p className="footer-credit">Designed &amp; Developed by Bar Shirom</p>
       </div>
     </footer>
   );

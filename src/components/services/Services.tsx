@@ -11,7 +11,7 @@ const Services = () => {
           <h2 className="section-title">כל השירותים במקום אחד</h2>
 
           <p className="section-description">
-            משירותי הובלה ואחסון ועד עבודות הנדימן, פירוק והרכבה ושיפוצים קלים —
+            משירותי הובלה ואחסון ועד עבודות הנדימן, פירוק והרכבה ושיפוצים קלים,
             בהתאמה לצורך שלכם.
           </p>
         </div>
@@ -20,7 +20,7 @@ const Services = () => {
           {services.map(({ title, description, icon: Icon }) => (
             <article className="service-card" key={title}>
               <div className="service-icon">
-                <Icon />
+                <Icon aria-hidden="true" />
               </div>
 
               <h3>{title}</h3>

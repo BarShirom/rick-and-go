@@ -1,6 +1,7 @@
 :root {
   --color-primary: #62c554;
-  --color-primary-dark: #469c3d;
+  --color-primary-dark: #28752d;
+  --color-primary-hover: #1d5c24;
   --color-primary-light: #dff5dc;
 
   --color-dark: #101510;
@@ -13,6 +14,7 @@
 
   --container-width: 1200px;
   --section-padding: 100px;
+  --header-height: 80px;
 
   --border-radius-small: 8px;
   --border-radius-medium: 16px;

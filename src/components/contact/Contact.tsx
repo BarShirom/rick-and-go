@@ -1,3 +1,4 @@
+import { contact } from "../../data/contact";
 import { FaFacebookF, FaGoogle, FaPhone, FaWhatsapp } from "react-icons/fa6";
 
 import "./Contact.css";
@@ -18,62 +19,62 @@ const Contact = () => {
 
           <div className="contact-actions">
             <a
-              href="https://wa.me/972537201979"
+              href={contact.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="contact-button contact-button-primary"
+              className="button button-primary"
             >
-              <FaWhatsapp />
+              <FaWhatsapp aria-hidden="true" />
               דברו איתנו בוואטסאפ
             </a>
 
             <a
-              href="tel:0537201979"
-              className="contact-button contact-button-secondary"
+              href={contact.phone}
+              className="button button-outline"
             >
-              <FaPhone />
-              053-720-1979
+              <FaPhone aria-hidden="true" />
+              <bdi dir="ltr">{contact.phoneDisplay}</bdi>
             </a>
           </div>
         </div>
 
         <aside className="contact-card">
-          <h3>Rick and GO</h3>
+          <h3 dir="ltr">Rick and GO</h3>
 
           <p>
             הובלות קטנות ובינוניות, אחסון רהיטים, פירוק והרכבה ושירותי הנדימן.
           </p>
 
           <div className="contact-links">
-            <a href="tel:0537201979">
-              <FaPhone />
-              <span>053-720-1979</span>
+            <a href={contact.phone}>
+              <FaPhone aria-hidden="true" />
+              <bdi dir="ltr">{contact.phoneDisplay}</bdi>
             </a>
 
             <a
-              href="https://wa.me/972537201979"
+              href={contact.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FaWhatsapp />
+              <FaWhatsapp aria-hidden="true" />
               <span>WhatsApp</span>
             </a>
 
             <a
-              href="https://www.facebook.com/profile.php?id=61591568684363"
+              href={contact.facebook}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FaFacebookF />
+              <FaFacebookF aria-hidden="true" />
               <span>עמוד הפייסבוק</span>
             </a>
 
             <a
-              href="https://share.google/aWiRlvcT3Jm6OKIkc"
+              href={contact.googleContact}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FaGoogle />
+              <FaGoogle aria-hidden="true" />
               <span>העסק שלנו בגוגל</span>
             </a>
           </div>

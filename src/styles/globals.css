@@ -4,7 +4,6 @@ body {
   background: var(--color-background);
   color: var(--color-text);
   line-height: 1.6;
-  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 a {
@@ -19,6 +18,7 @@ a {
 
 main {
   min-height: 100vh;
+  scroll-margin-block-start: calc(var(--header-height) + 16px);
 }
 
 .container {
@@ -27,20 +27,99 @@ main {
 }
 
 .section {
-  padding-block: var(--section-padding);
-  scroll-margin-top: 90px;
+  padding-block: var(--section-padding-start, var(--section-padding))
+    var(--section-padding-end, var(--section-padding));
+  scroll-margin-block-start: calc(var(--header-height) + 16px);
 }
 
 .section-title {
   margin-bottom: 18px;
   font-size: clamp(2rem, 4vw, 3.25rem);
   line-height: 1.15;
+  text-wrap: balance;
 }
 
 .section-description {
   max-width: 700px;
   color: var(--color-text-light);
   font-size: 1.1rem;
+}
+
+:where(a, button):focus-visible {
+  outline: 3px solid var(--color-primary-dark);
+  outline-offset: 4px;
+}
+
+:where(.contact, .footer) a:focus-visible {
+  outline-color: var(--color-primary-light);
+}
+
+.skip-link {
+  position: fixed;
+  inset-block-start: 12px;
+  inset-inline-start: 16px;
+  z-index: 1100;
+  padding: 12px 20px;
+  border-radius: var(--border-radius-small);
+  background: var(--color-dark);
+  color: white;
+  transform: translateY(-160%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.button {
+  min-height: 54px;
+  padding: 13px 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-weight: 700;
+  line-height: 1.5;
+  text-align: center;
+  transition: background var(--transition), color var(--transition),
+    border-color var(--transition), box-shadow var(--transition);
+}
+
+.button svg {
+  flex-shrink: 0;
+  font-size: 1.2rem;
+}
+
+.button-primary {
+  color: white;
+  background: var(--color-primary-dark);
+  box-shadow: var(--shadow-small);
+}
+
+.button-primary:hover {
+  background: var(--color-primary-hover);
+}
+
+.button-secondary {
+  color: var(--color-dark);
+  background: white;
+  border-color: var(--color-border);
+}
+
+.button-secondary:hover {
+  color: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+}
+
+.button-outline {
+  color: white;
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.button-outline:hover {
+  color: var(--color-primary-light);
+  border-color: var(--color-primary);
 }
 
 @media (max-width: 768px) {
@@ -50,5 +129,20 @@ main {
 
   .container {
     width: min(100% - 32px, var(--container-width));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --transition: 0s; }
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    transition-duration: 0s;
+    animation: none;
+  }
+  .service-card:hover, .advantage-card:hover,
+  .service-card:hover .service-icon,
+  .advantage-card:hover .advantage-icon,
+  .contact-links a:hover, .footer-socials a:hover {
+    transform: none;
   }
 }

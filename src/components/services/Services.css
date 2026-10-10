@@ -17,13 +17,13 @@
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 22px;
 }
 
 .service-card {
-  min-height: 310px;
-  padding: 30px;
+  min-height: 280px;
+  padding: 28px 24px;
   display: flex;
   flex-direction: column;
   background: var(--color-background);
@@ -36,7 +36,7 @@
 }
 
 .service-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-3px);
   border-color: rgba(98, 197, 84, 0.5);
   box-shadow: var(--shadow-medium);
 }
@@ -46,10 +46,7 @@
 }
 
 .service-icon {
-  transition: transform 0.3s ease;
-}
-
-.service-icon {
+  transition: transform var(--transition);
   width: 58px;
   height: 58px;
   margin-bottom: 24px;
@@ -69,31 +66,13 @@
 }
 
 .service-card p {
-  margin-bottom: 24px;
   color: var(--color-text-light);
   line-height: 1.75;
 }
 
-.service-link {
-  margin-top: auto;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--color-primary-dark);
-  font-weight: 700;
-}
-
-.service-link span {
-  transition: transform var(--transition);
-}
-
-.service-link:hover span {
-  transform: translateX(-4px);
-}
-
 @media (max-width: 1100px) {
   .services-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -103,7 +82,7 @@
     text-align: center;
   }
 
-  .section-description {
+  .services .section-description {
     margin-inline: auto;
   }
 

@@ -20,7 +20,7 @@ const WhyUs = () => {
           {advantages.map(({ icon: Icon, title, description }) => (
             <article key={title} className="advantage-card">
               <div className="advantage-icon">
-                <Icon />
+                <Icon aria-hidden="true" />
               </div>
 
               <h3>{title}</h3>
